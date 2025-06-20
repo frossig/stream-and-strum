@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎸 Stream & Strum</h1>
+      <p class="version">v1.0.0</p>
+    </header>
+    
+    <div class="current-song">
+      <h3>🎵 Canción Actual</h3>
+      <div id="song-info">
+        <div class="no-song">No detectada</div>
+      </div>
+      <button id="search-btn" class="primary-btn">
+        🔍 Buscar Acordes
+      </button>
+    </div>
+
+    <div class="settings">
+      <h3>⚙️ Sitios de Búsqueda</h3>
+      <div class="setting-group">
+        <label class="setting-item">
+          <input type="checkbox" id="ultimate-guitar" checked>
+          <span class="checkmark"></span>
+          <span class="setting-label">Ultimate Guitar</span>
+        </label>
+        
+        <label class="setting-item">
+          <input type="checkbox" id="cifra-club" checked>
+          <span class="checkmark"></span>
+          <span class="setting-label">Cifra Club</span>
+        </label>
+        
+        <label class="setting-item">
+          <input type="checkbox" id="google" checked>
+          <span class="checkmark"></span>
+          <span class="setting-label">Google Search</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="options">
+      <h3>🔧 Opciones</h3>
+      <div class="setting-group">
+        <label class="setting-item">
+          <input type="checkbox" id="auto-search">
+          <span class="checkmark"></span>
+          <span class="setting-label">Búsqueda automática</span>
+        </label>
+        
+        <label class="setting-item">
+          <input type="checkbox" id="open-background" checked>
+          <span class="checkmark"></span>
+          <span class="setting-label">Abrir en segundo plano</span>
+        </label>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-text">
+        Detecta canciones y encuentra acordes al instante
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
