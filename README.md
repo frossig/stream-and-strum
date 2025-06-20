@@ -73,7 +73,7 @@ Extensión de Chrome que detecta automáticamente la música que estás escuchan
 - ✅ YouTube Music (music.youtube.com)
 - ✅ Spotify Web Player (open.spotify.com)
 
-## 🎯 Versión 1.0.1
+## 🎯 Versión 1.1.0
 
 Primera versión funcional con todas las características básicas implementadas.
 
@@ -109,4 +109,4 @@ Primera versión funcional con todas las características básicas implementadas
 
 ---
 
-**¡Hecho con ❤️ para músicos que aman tocar!**
+**¡Acordes, al toque 🎸!**

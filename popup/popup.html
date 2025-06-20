@@ -1,74 +1,141 @@
 <!DOCTYPE html>
 <html>
 <head>
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="./popus.css">
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>🎸 Stream & Strum</h1>
-      <p class="version">v1.0.1</p>
+    <header class="header">
+      <div class="header-content">
+        <span class="logo-icon">🎸</span>
+        <div class="header-text">
+          <h1>Stream & Strum</h1>
+          <p class="version">v1.1.0</p>
+        </div>
+      </div>
     </header>
     
-    <div class="current-song">
-      <h3>🎵 Canción Actual</h3>
-      <div id="song-info">
-        <div class="no-song">No detectada</div>
-      </div>
-      <button id="search-btn" class="primary-btn">
-        🔍 Buscar Acordes
+    <nav class="tabs-nav">
+      <button class="tab-btn active" data-tab="current">
+        <span class="tab-icon">🎵</span>
+        <span class="tab-text">Actual</span>
       </button>
-    </div>
+      <button class="tab-btn" data-tab="sites">
+        <span class="tab-icon">🔗</span>
+        <span class="tab-text">Sitios</span>
+      </button>
+      <button class="tab-btn" data-tab="options">
+        <span class="tab-icon">⚙️</span>
+        <span class="tab-text">Opciones</span>
+      </button>
+    </nav>
 
-    <div class="settings">
-      <h3>⚙️ Sitios de Búsqueda</h3>
-      <div class="setting-group">
-        <label class="setting-item">
-          <input type="checkbox" id="ultimate-guitar" checked>
-          <span class="checkmark"></span>
-          <span class="setting-label">Ultimate Guitar</span>
-        </label>
-        
-        <label class="setting-item">
-          <input type="checkbox" id="cifra-club" checked>
-          <span class="checkmark"></span>
-          <span class="setting-label">Cifra Club</span>
-        </label>
-        
-        <label class="setting-item">
-          <input type="checkbox" id="google" checked>
-          <span class="checkmark"></span>
-          <span class="setting-label">Google Search</span>
-        </label>
+    <div class="tab-content">
+      
+      <div class="tab-panel active" id="current-tab">
+        <div class="current-song">
+          <div class="song-status" id="song-info">
+            <div class="no-song">
+              <span class="status-icon">📱</span>
+              <div class="status-text">
+                <div class="status-title">No detectada</div>
+                <div class="status-subtitle">Ve a YouTube Music o Spotify</div>
+              </div>
+            </div>
+          </div>
+          
+          <button id="search-btn" class="primary-btn" disabled>
+            <span class="btn-icon">🔍</span>
+            <span class="btn-text">Buscar Acordes</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="sites-tab">
+        <div class="settings">
+          <div class="section-header">
+            <h3>Sitios de Búsqueda</h3>
+            <p class="section-subtitle">Selecciona dónde buscar acordes</p>
+          </div>
+          
+          <div class="setting-group">
+            <label class="setting-item">
+              <input type="checkbox" id="ultimate-guitar" checked>
+              <span class="checkmark"></span>
+              <div class="setting-content">
+                <span class="setting-label">Ultimate Guitar</span>
+                <span class="setting-description">La base de datos más grande</span>
+              </div>
+            </label>
+            
+            <label class="setting-item">
+              <input type="checkbox" id="cifra-club" checked>
+              <span class="checkmark"></span>
+              <div class="setting-content">
+                <span class="setting-label">Cifra Club</span>
+                <span class="setting-description">Acordes en español y portugués</span>
+              </div>
+            </label>
+            
+            <label class="setting-item">
+              <input type="checkbox" id="google" checked>
+              <span class="checkmark"></span>
+              <div class="setting-content">
+                <span class="setting-label">Google Search</span>
+                <span class="setting-description">Búsqueda general de acordes</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="options-tab">
+        <div class="options">
+          <div class="section-header">
+            <h3>Configuración</h3>
+            <p class="section-subtitle">Personaliza el comportamiento</p>
+          </div>
+          
+          <div class="setting-group">
+            <label class="setting-item">
+              <input type="checkbox" id="auto-search">
+              <span class="checkmark"></span>
+              <div class="setting-content">
+                <span class="setting-label">Búsqueda automática</span>
+                <span class="setting-description">Buscar cuando cambie la canción</span>
+              </div>
+            </label>
+            
+            <label class="setting-item">
+              <input type="checkbox" id="open-background" checked>
+              <span class="checkmark"></span>
+              <div class="setting-content">
+                <span class="setting-label">Abrir en segundo plano</span>
+                <span class="setting-description">No cambiar de pestaña actual</span>
+              </div>
+            </label>
+          </div>
+          
+          <div class="quick-actions">
+            <button class="secondary-btn" id="clear-settings">
+              <span class="btn-icon">🔄</span>
+              <span class="btn-text">Restaurar por defecto</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="options">
-      <h3>🔧 Opciones</h3>
-      <div class="setting-group">
-        <label class="setting-item">
-          <input type="checkbox" id="auto-search">
-          <span class="checkmark"></span>
-          <span class="setting-label">Búsqueda automática</span>
-        </label>
-        
-        <label class="setting-item">
-          <input type="checkbox" id="open-background" checked>
-          <span class="checkmark"></span>
-          <span class="setting-label">Abrir en segundo plano</span>
-        </label>
-      </div>
-    </div>
-
-    <footer>
-      <div class="footer-text">
-        Detecta canciones y encuentra acordes al instante
+    <footer class="footer">
+      <div class="footer-content">
+        <span class="footer-text">Acordes, al toque 🎸</span>
       </div>
     </footer>
   </div>
 
-  <script src="popup.js"></script>
+  <script src="./popup.js"></script>
 </body>
 </html>
