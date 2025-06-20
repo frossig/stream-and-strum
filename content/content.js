@@ -35,7 +35,6 @@ class StreamAndStrumDetector {
     }
   
     startWatching() {
-      // Revisar cada 2 segundos por cambios de canción
       setInterval(() => {
         const songInfo = this.extractSongInfo();
         if (songInfo && this.isDifferentSong(songInfo)) {
@@ -55,7 +54,6 @@ class StreamAndStrumDetector {
     }
   
     extractFromYouTubeMusic() {
-      // Selectores más específicos para YouTube Music
       const titleSelectors = [
         'yt-formatted-string.title.style-scope.ytmusic-player-bar',
         '.title.style-scope.ytmusic-player-bar'
@@ -70,9 +68,6 @@ class StreamAndStrumDetector {
       const title = this.findElementText(titleSelectors);
       const artist = this.findElementText(artistSelectors);
     
-      // Debug info
-      console.log('Stream & Strum - Título:', title, 'Artista:', artist);
-    
       if (title && artist) {
         return {
           title: this.cleanText(title),
@@ -84,22 +79,20 @@ class StreamAndStrumDetector {
     }
   
     extractFromSpotify() {
-      // Selectores para Spotify Web
       const titleSelectors = [
-        '[data-testid="now-playing-widget"] a[href*="/track/"]',
-        '.now-playing .track-info__name a',
-        '.Root__now-playing-bar .track-info__name a'
+        'a[data-testid="context-item-link"]',
+        '[data-testid="context-item-link"]'
       ];
       
       const artistSelectors = [
-        '[data-testid="now-playing-widget"] a[href*="/artist/"]',
-        '.now-playing .track-info__artists a',
-        '.Root__now-playing-bar .track-info__artists a'
+        'a[data-testid="context-item-info-artist"]',
+        '[data-testid="context-item-info-artist"]'
       ];
-  
+    
       const title = this.findElementText(titleSelectors);
       const artist = this.findElementText(artistSelectors);
-  
+    
+    
       if (title && artist) {
         return {
           title: this.cleanText(title),
@@ -122,9 +115,9 @@ class StreamAndStrumDetector {
   
     cleanText(text) {
       return text
-        .replace(/^\s+|\s+$/g, '') // trim
-        .replace(/\s+/g, ' ') // normalizar espacios
-        .replace(/[""'']/g, '"') // normalizar comillas
+        .replace(/^\s+|\s+$/g, '') 
+        .replace(/\s+/g, ' ') 
+        .replace(/[""'']/g, '"') 
         .trim();
     }
   
@@ -154,7 +147,6 @@ class StreamAndStrumDetector {
     }
   
     createFloatingButton() {
-      // Remover botón existente si existe
       if (this.floatingButton) {
         this.floatingButton.remove();
       }
@@ -164,7 +156,6 @@ class StreamAndStrumDetector {
       this.floatingButton.innerHTML = '🎸';
       this.floatingButton.title = 'Buscar acordes - Stream & Strum';
       
-      // Estilos del botón
       Object.assign(this.floatingButton.style, {
         position: 'fixed',
         top: '100px',
@@ -184,7 +175,6 @@ class StreamAndStrumDetector {
         userSelect: 'none'
       });
   
-      // Efectos hover
         this.floatingButton.addEventListener('mouseenter', () => {
           this.floatingButton.style.background = 'linear-gradient(135deg, #ff5252, #b33e00)';
           this.floatingButton.style.boxShadow = '0 8px 25px rgba(255, 82, 82, 0.5)';
@@ -233,7 +223,6 @@ class StreamAndStrumDetector {
     }
   }
   
-  // Inicializar cuando el DOM esté listo
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       new StreamAndStrumDetector();

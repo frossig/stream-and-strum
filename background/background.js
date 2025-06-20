@@ -3,7 +3,6 @@ class StreamAndStrumBackground {
       this.setupMessageListener();
       this.setupInstallHandler();
       
-      // Configuración por defecto
       this.defaultSettings = {
         ultimateGuitar: true,
         cifraClub: true,
@@ -32,8 +31,7 @@ class StreamAndStrumBackground {
     }
   
     setupInstallHandler() {
-      chrome.runtime.onInstalled.addListener(() => {
-        // Configurar settings por defecto
+      chrome.runtime.onInstalled.addListener(() => {  
         chrome.storage.sync.set({ streamStrumSettings: this.defaultSettings });
       });
     }
@@ -58,7 +56,6 @@ class StreamAndStrumBackground {
         this.searchChords(songInfo);
       }
       
-      // Actualizar badge con info de la canción
       this.updateBadge(songInfo);
     }
   
@@ -66,7 +63,6 @@ class StreamAndStrumBackground {
       const settings = await this.getSettings();
       const { artist, title } = songInfo;
       
-      // Limpiar texto para URL
       const cleanArtist = this.cleanForUrl(artist);
       const cleanTitle = this.cleanForUrl(title);
   
@@ -82,7 +78,6 @@ class StreamAndStrumBackground {
         sitesToOpen.push(this.chordSites.google);
       }
   
-      // Abrir pestañas
       sitesToOpen.forEach((site, index) => {
         const query = site.format(cleanArtist, cleanTitle);
         const url = site.url + encodeURIComponent(query);
@@ -92,10 +87,9 @@ class StreamAndStrumBackground {
             url: url,
             active: index === 0 && !settings.openInBackground
           });
-        }, index * 100); // Delay pequeño entre pestañas
+        }, index * 100); 
       });
   
-      // Mostrar notificación
       this.showNotification(
         `Buscando acordes para "${artist} - ${title}"`,
         `Abriendo ${sitesToOpen.length} pestañas...`
@@ -104,9 +98,9 @@ class StreamAndStrumBackground {
   
     cleanForUrl(text) {
       return text
-        .replace(/[^\w\sáéíóúñü]/gi, '') // Quitar caracteres especiales pero mantener acentos
+        .replace(/[^\w\sáéíóúñü]/gi, '') 
         .trim()
-        .replace(/\s+/g, ' '); // Normalizar espacios
+        .replace(/\s+/g, ' '); 
     }
   
     async getSettings() {
@@ -118,12 +112,10 @@ class StreamAndStrumBackground {
     }
   
     updateBadge(songInfo) {
-      // Actualizar badge del ícono con primera letra del artista
       const firstLetter = songInfo.artist.charAt(0).toUpperCase();
       chrome.action.setBadgeText({ text: firstLetter });
       chrome.action.setBadgeBackgroundColor({ color: '#ff6b6b' });
       
-      // Actualizar título
       chrome.action.setTitle({ 
         title: `Stream & Strum\nAhora: ${songInfo.artist} - ${songInfo.title}` 
       });
@@ -141,5 +133,4 @@ class StreamAndStrumBackground {
     }
   }
   
-  // Inicializar
   new StreamAndStrumBackground();

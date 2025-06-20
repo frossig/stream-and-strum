@@ -12,12 +12,10 @@ class StreamAndStrumPopup {
     }
   
     setupEventListeners() {
-      // Botón de búsqueda
       document.getElementById('search-btn').addEventListener('click', () => {
         this.searchCurrentSong();
       });
   
-      // Checkboxes de configuración
       const checkboxes = [
         'ultimate-guitar',
         'cifra-club', 
@@ -53,7 +51,7 @@ class StreamAndStrumPopup {
           this.displayUnsupportedSite();
         }
       } catch (error) {
-        console.log('Error getting current song:', error);
+        console.error('Error getting current song:', error);
         this.displayNoSong();
       }
     }
@@ -74,7 +72,6 @@ class StreamAndStrumPopup {
         </div>
       `;
       
-      // Habilitar botón de búsqueda
       document.getElementById('search-btn').disabled = false;
     }
   
@@ -95,7 +92,6 @@ class StreamAndStrumPopup {
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
         await chrome.tabs.sendMessage(tab.id, { type: 'SEARCH_CHORDS_NOW' });
         
-        // Feedback visual
         const btn = document.getElementById('search-btn');
         const originalText = btn.textContent;
         btn.textContent = '✓ Buscando...';
@@ -107,7 +103,7 @@ class StreamAndStrumPopup {
         }, 2000);
         
       } catch (error) {
-        console.log('Error searching chords:', error);
+        console.error('Error searching chords:', error);
       }
     }
   
@@ -146,7 +142,6 @@ class StreamAndStrumPopup {
         document.getElementById('cifra-club').checked ||
         document.getElementById('google').checked;
   
-      // Deshabilitar búsqueda si no hay sitios seleccionados
       if (!hasSelectedSites) {
         document.getElementById('search-btn').disabled = true;
         document.getElementById('search-btn').textContent = '⚠️ Selecciona al menos un sitio';
@@ -163,7 +158,6 @@ class StreamAndStrumPopup {
     }
   }
   
-  // Inicializar cuando se carga el popup
   document.addEventListener('DOMContentLoaded', () => {
     new StreamAndStrumPopup();
   });
