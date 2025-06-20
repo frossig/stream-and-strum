@@ -118,6 +118,18 @@ class StreamAndStrumDetector {
         .replace(/^\s+|\s+$/g, '') 
         .replace(/\s+/g, ' ') 
         .replace(/[""'']/g, '"') 
+        
+        .replace(/\b(19|20)\d{2}\b/g, '')
+        
+        .replace(/\b(remaster|remastered|remix|remixed|deluxe|edition|version|extended|radio|edit|album|single|ep|lp)\b/gi, '')
+        
+        .replace(/\b(anniversary|collector|special|limited|expanded|bonus|tracks?|disc|cd|vinyl|digital)\b/gi, '')
+        
+        .replace(/\s*[-–—]\s*/g, ' ') 
+        .replace(/\(\s*\)/g, '') 
+        .replace(/\[\s*\]/g, '') 
+        
+        .replace(/\s+/g, ' ')
         .trim();
     }
   
